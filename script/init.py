@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-version = '26.04.21.0'
+version = 'v26.04.21.0-beta'
 dir = os.path.dirname(__file__)
 def checkForUpdates():
     print('Checking for updates...')
