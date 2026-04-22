@@ -2,8 +2,6 @@ import json
 import os
 from natsort import natsorted
 dir = os.path.dirname(__file__)
-with open(fr'{dir}\data\special_grouped.json') as f:
-    building_data = json.loads(f.read())
 def listStats(building):
     building_stats = {}
     def listProducts(path):
@@ -51,9 +49,9 @@ def listStats(building):
                         for p in range(len(building['components'][i]['production']['options'][u]['products'][o]['products'])):
                             building_stats[i]['production']['option ' + str(u)][whenProduced]['random'][p] = {'dropChance':building['components'][i]['production']['options'][u]['products'][o]['products'][p]['dropChance'],'product':listProducts(building['components'][i]['production']['options'][u]['products'][o]['products'][p]['product'])}
     return building_stats
-def listMultilevelStats(id):
+def listMultilevelStats(building_data):
     building_stats = {}
-    for i in building_data[id]:
-        building_stats[i] = listStats(building_data[id][i])
+    for i in building_data:
+        building_stats[i] = listStats(building_data[i])
     building_stats = dict(natsorted(building_stats.items()))
     return building_stats
