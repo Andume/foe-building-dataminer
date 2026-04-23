@@ -6,7 +6,7 @@ import requests
 from process_data import listStats  # type: ignore
 import tkinter as tk
 from tkinter import filedialog
-init.checkForUpdates() 
+#init.checkForUpdates() 
 init.checkForNewBuildings()
 dir = os.path.dirname(__file__) #Get directory of the script to access local file
 def getBuildingID(building_name):
@@ -17,7 +17,7 @@ def getBuildingID(building_name):
 def getBuildingLevels(building_id):
     with open(rf'{dir}\data\building_urls.json') as f:
         building_urls_local = json.loads(f.read()) #Load local building_urls.json to get building names/ids/urls
-    multilevel_building_id = re.sub(r"\d*\D$", "", building_id) #Remove level number from building id to get multilevel building id (e.g. W_MultiAge_ANNI23A1 -> W_MultiAge_ANNI23A) to find all levels of the building
+    multilevel_building_id = re.sub(r"\d*\D?$", "", building_id) #Remove level number from building id to get multilevel building id (e.g. W_MultiAge_ANNI23A1 -> W_MultiAge_ANNI23A) to find all levels of the building
     building_ids = [] #Prepare list to store building ids of all levels of the building
     for keys in building_urls_local.keys():
         if keys.startswith(multilevel_building_id):
@@ -65,13 +65,13 @@ while True:
     if isMultilevel.lower() == 'y': #If building is multilevel, save data in a file named after the building without the level number (e.g. W_MultiAge_ANNI23A.json); if building is not multilevel, save data in a file named after the full building ID.
         while True:
             try:
-                with open(f'{save_file_path}/{re.sub(r"\d*\D$", "", building_ID)}.json', 'x') as f:
+                with open(f'{save_file_path}/{re.sub(r"\d*\D?$", "", building_ID)}.json', 'x') as f:
                     f.write(json.dumps(building_data, indent=2))
             except FileExistsError: #If a file with the same name already exists in the selected folder, add a number in parentheses to the end of the file name to distinguish it from the existing file (e.g. W_MultiAge_ANNI26A(1).json, W_MultiAge_ANNI26A(2).json, etc.). If files with the same name and a number in parentheses already exist, keep increasing the number until a unique file name is found.
                 attempt = 1
                 while True:
                     try:
-                        with open(f'{save_file_path}/{re.sub(r"\d*\D$", "", building_ID)}({attempt}).json', 'x') as f:
+                        with open(f'{save_file_path}/{re.sub(r"\d*\D?$", "", building_ID)}({attempt}).json', 'x') as f:
                             f.write(json.dumps(building_data, indent=2))
                         break
                     except FileExistsError:
@@ -96,4 +96,4 @@ while True:
             break
     print('Saved.')
     if input('Do you want to get data for another building? Y/N: ').lower() == 'n': #Ask user if they want to get data for another building; if not, exit the program; if yes, repeat the process.
-        exit
+        break

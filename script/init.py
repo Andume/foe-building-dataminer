@@ -2,7 +2,7 @@ from natsort import natsorted
 import requests
 import json
 import os
-version = 'v26.04.23.0-release' #Version number of the dataminer, used to check for updates. Format: v[YY].[MM].[DD]-[beta/release]
+version = 'v26.04.23.1-beta' #Version number of the dataminer, used to check for updates. Format: v[YY].[MM].[DD]-[beta/release]
 dir = os.path.dirname(__file__) #Get directory of the script to access local files
 def checkForUpdates():
     print('Checking for updates...')
