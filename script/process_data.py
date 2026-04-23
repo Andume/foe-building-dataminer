@@ -2,7 +2,7 @@ import json
 import os
 dir = os.path.dirname(__file__) #Get directory of the script to access local files
 def listStats(building):
-    building_stats = {} #Initialize empty dict to store building stats
+    building_stats = {'name': building['name']} #Initialize empty dict to store building stats
     def listProducts(path): #Convert 'products' json object into a more readable dict with product names and amounts
         product_list = {} #Initialize empty dict to store products
         if path['type'] == 'resources': #Check product type; if 'type' = 'resources', product can be added to list normally
