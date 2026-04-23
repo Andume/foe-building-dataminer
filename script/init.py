@@ -2,12 +2,12 @@ from natsort import natsorted
 import requests
 import json
 import os
-version = 'v26.04.23.0-beta' #Version number of the dataminer, used to check for updates. Format: v[YY].[MM].[DD]-[beta/main]
+version = 'v26.04.23.0-release' #Version number of the dataminer, used to check for updates. Format: v[YY].[MM].[DD]-[beta/release]
 dir = os.path.dirname(__file__) #Get directory of the script to access local files
 def checkForUpdates():
     print('Checking for updates...')
     latest_version = json.loads(requests.get('https://raw.githubusercontent.com/Andume/foe-building-dataminer/refs/heads/main/version.json').text) #Get latest version number from GitHub
-    if version == latest_version['main'] or version == latest_version['beta']:
+    if version == latest_version['release'] or version == latest_version['beta']:
         print('The dataminer is up to data, continuing.')   #Continue if the version number of the dataminer matches the latest version number of main or beta branch
         pass
     else: 
