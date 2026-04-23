@@ -52,8 +52,8 @@ while True:
             else: print('Building not found, please try again.')
         building_IDs = [building_ID] #If building is not multilevel, just put the single building ID in a list to be processed the same way as multilevel buildings
     building_data = {} #Initialize empty dict for building data
-    for ID in building_IDs:
-        building_data[ID] = listStats(getBuildingData(ID)) #Get building data for each level of the building and store it in a dictionary
+    for i in range(len(building_IDs)):
+        building_data[i] = listStats(getBuildingData(building_IDs[i])) #Get building data for each level of the building and store it in a dictionary
     print('Data retrieved, please select a folder to save the data to.') #Notify user of success and ask them to select a folder to save the data
     root = tk.Tk()
     root.withdraw()
