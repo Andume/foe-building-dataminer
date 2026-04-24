@@ -1,2 +1,2 @@
 # foe-building-dataminer
-Under development, full release Soon™.
+A Python scrpit for retriving Forge of Empires building data, outputted as JSON.
