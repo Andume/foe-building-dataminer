@@ -6,7 +6,7 @@ import requests
 from process_data import listStats  # type: ignore
 import tkinter as tk
 from tkinter import filedialog
-#init.checkForUpdates() 
+init.checkForUpdates() 
 init.checkForNewBuildings()
 dir = os.path.dirname(__file__) #Get directory of the script to access local file
 def getBuildingID(building_name):
